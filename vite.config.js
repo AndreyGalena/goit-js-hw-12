@@ -9,7 +9,7 @@ export default defineConfig(({ command }) => {
     define: {
       [command === 'serve' ? 'global' : '_global']: {},
     },
-    root: 'src',
+    root: 'src',  // <- это корень проэкта
     build: {
       sourcemap: true,
       rollupOptions: {
@@ -34,8 +34,8 @@ export default defineConfig(({ command }) => {
           },
         },
       },
-      outDir: '../dist',
-      emptyOutDir: true,
+      outDir: '../dist', // — финальная сборка будет лежать в dist, на уровень выше src.
+      emptyOutDir: true, // — очищает папку dist перед новой сборкой.
     },
     plugins: [
       injectHTML(),

@@ -1,0 +1,25 @@
+.form {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.form input {
+    border-radius: 4px;
+    border: 1px solid #808080;
+    padding: 8px 16px;
+}
+
+.form button {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    color: #FFFFFF;
+    border-radius: 8px;
+    padding: 8px 16px;
+    background: #4E75FF;
+    transition: background .5s;
+}
+
+.form button:hover {
+    background: #6C8CFF;
+}

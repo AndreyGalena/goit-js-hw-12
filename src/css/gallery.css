@@ -1,0 +1,62 @@
+.gallery {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 24px;
+    padding: 24px;
+}
+
+/* ------Плавная загрузка img------------------------------------------------ */
+.gallery-item {
+    flex: 0 1 360px;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: transform 1s ease, opacity 3s ease;
+}
+
+.gallery-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+}
+
+.gallery-item a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    /* обязательно для увеличения именно img а не блока */
+    overflow: hidden;
+    border-radius: 10px;
+    border: 1px solid #808080;
+}
+
+.gallery-item a img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .5s ease;
+}
+
+/* При наведении увеличивается картинка */
+.gallery-item a img:hover {
+    transform: scale(1.3);
+}
+
+/* ----Text-Gallery-------------------------------------------------------------- */
+.gallery-textBox {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    padding: 5px;
+    background: #FFFFFF;
+    z-index: 100;
+}
