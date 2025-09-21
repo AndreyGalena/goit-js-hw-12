@@ -21,7 +21,7 @@ function createMarkup(arr) {
     return arr.map((img) => `
     <div class="gallery-item">
         <a class="gallery-link" href="${img.largeImageURL}">
-            <img class="gallery-image" src="${img.webformatURL}" data-source="${img.largeImageURL}" loading="lazy" alt="${img.tags}" />
+            <img class="gallery-image" src="${img.webformatURL}" data-source="${img.largeImageURL}" alt="${img.tags}" />
             <div class="gallery-textBox">
                 <div>
                     <p>Likes</p>

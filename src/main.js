@@ -60,8 +60,6 @@ form.addEventListener('submit', async (event) => {
     if (!globalVariables.query) return;
     // Делает запрос на сервер
     const data = await takeImages(); // ждёт
-    console.log('data ', data);
-
     // количество страниц
     globalVariables.fullPages = Math.floor(data.totalHits / globalVariables.per_page);
     // создаём разметку
