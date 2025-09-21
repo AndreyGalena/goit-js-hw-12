@@ -1,5 +1,6 @@
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
+import { globalVariables, form, buttonMore } from './js/shared';
 import { getImagesByQuery } from './js/pixabay-api';
 import {
     createGallery,
@@ -22,19 +23,13 @@ https://pixabay.com/api/docs/
 Parameters -> key (required)	str	Your API key: 18618260-23b6d79f5c2a85fb2d6c9be6b
 */
 
-let page = 1;
-let query = null;
-
-const form = document.querySelector('.form');
-const buttonMore = document.querySelector('.buttonMore');
-
 
 async function takeImages() {
     try {
         // показать лоадер
         showLoader();
-        const data = await getImagesByQuery(query, page);
-        createGallery(data.hits);
+        const data = await getImagesByQuery(globalVariables.query, globalVariables.page);
+        return data;
     } catch (error) {
         iziToast.error({
             title: 'Error!',
@@ -51,25 +46,35 @@ async function takeImages() {
 }
 
 
-form.addEventListener('submit', (event) => {
+form.addEventListener('submit', async (event) => {
     event.preventDefault();
-    // убирает кнопку More
+    // обнуление начальной страницы
+    globalVariables.page = 1;
+    // убирает кнопку buttonMore
     hideLoadMoreButton();
-    // зачищаем галерею
+    // очищает галерею
     clearGallery();
     // пользовательский ввод
-    query = form.elements['search-text'].value.trim();
+    globalVariables.query = form.elements['search-text'].value.trim();
     // если ничего то.
-    if (!query) return;
+    if (!globalVariables.query) return;
     // Делает запрос на сервер
-    takeImages();
+    const data = await takeImages(); // ждёт
+    console.log('data ', data);
+
+    // количество страниц
+    globalVariables.fullPages = Math.floor(data.totalHits / globalVariables.per_page);
+    // создаём разметку
+    createGallery(data.hits);
 })
 
-buttonMore.addEventListener('click', (event) => {
+buttonMore.addEventListener('click', async (event) => {
     event.preventDefault();
     // убирает кнопку More
     hideLoadMoreButton();
-    page++;
+    globalVariables.page++;
     // Делает запрос на сервер
-    takeImages();
+    const data = await takeImages(); // ждёт
+    // создаём разметку
+    createGallery(data.hits);
 })

@@ -60,3 +60,15 @@
     background: #FFFFFF;
     z-index: 100;
 }
+
+@media (max-width: 768px) {
+
+    .sl-navigation {
+        display: none !important;
+    }
+
+    /* .sl-next,
+    .sl-prev {
+        display: none !important;
+    } */
+}

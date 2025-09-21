@@ -5,10 +5,7 @@
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import { ghostEffectBlock } from './additional_effects';
-
-
-const loader = document.getElementById('loader');
-const buttonMore = document.querySelector('.buttonMore');
+import { gallery, loader, buttonMore } from './shared';
 
 
 let lightbox = new SimpleLightbox('.gallery a', {
@@ -24,25 +21,25 @@ function createMarkup(arr) {
     return arr.map((img) => `
     <div class="gallery-item">
         <a class="gallery-link" href="${img.largeImageURL}">
-        <img class="gallery-image" src="${img.webformatURL}" data-source="${img.largeImageURL}" alt="${img.tags}" />
-        <div class="gallery-textBox">
-            <div>
-                <p>Likes</p>
-                <p>${img.likes}</p>
+            <img class="gallery-image" src="${img.webformatURL}" data-source="${img.largeImageURL}" loading="lazy" alt="${img.tags}" />
+            <div class="gallery-textBox">
+                <div>
+                    <p>Likes</p>
+                    <p>${img.likes}</p>
+                </div>
+                <div>
+                    <p>Views</p>
+                    <p>${img.views}</p>
+                </div>
+                <div>
+                    <p>Comments</p>
+                    <p>${img.comments}</p>
+                </div>
+                <div>
+                    <p>Downloads</p>
+                    <p>${img.downloads}</p>
+                </div>
             </div>
-            <div>
-                <p>Views</p>
-                <p>${img.views}</p>
-            </div>
-            <div>
-                <p>Comments</p>
-                <p>${img.comments}</p>
-            </div>
-            <div>
-                <p>Downloads</p>
-                <p>${img.downloads}</p>
-            </div>
-        </div>
         </a>
     </div>
   `).join("");
@@ -50,7 +47,6 @@ function createMarkup(arr) {
 
 
 export function createGallery(images) {
-    const gallery = document.getElementById('gallery');
     if (gallery) {
         gallery.insertAdjacentHTML("beforeend", createMarkup(images));
         // Плавное появление img при загрузке
@@ -61,8 +57,7 @@ export function createGallery(images) {
 }
 
 export function clearGallery() {
-    /* должна очищать содержимое контейнера галереи */
-    const gallery = document.getElementById('gallery');
+    /* Очищает содержимое контейнера галереи */
     gallery.innerHTML = "";
 }
 
@@ -78,11 +73,11 @@ export function hideLoader() {
 }
 
 export function showLoadMoreButton() {
-    // должна добавлять класс для отображения кнопки Load more.
+    /* Меняет класс для отображения кнопки Load more. */
     buttonMore.classList.replace("hideLoadMoreButton", "showLoadMoreButton");
 }
 
 export function hideLoadMoreButton() {
-    // должна убирать класс для отображения кнопки Load more
+    /* Меняет класс для скрытия кнопки Load more */
     buttonMore.classList.replace("showLoadMoreButton", "hideLoadMoreButton");
 }

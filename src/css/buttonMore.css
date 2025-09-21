@@ -4,12 +4,18 @@
 }
 
 .buttonMore {
-
     font-size: 25px;
-    border: 1px solid black;
+    color: white;
+    /* border: 1px solid black; */
     border-radius: 10px;
     padding: 10px 20px;
     margin: 0 auto;
+    background: #4E75FF;
+    transition: background .5s;
+}
+
+.buttonMore:hover {
+    background: #6C8CFF;
 }
 
 .showLoadMoreButton {

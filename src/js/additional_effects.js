@@ -1,4 +1,5 @@
 import { hideLoader, showLoadMoreButton } from './render-functions';
+import { globalVariables } from './shared';
 
 
 export function ghostEffectBlock() {
@@ -23,8 +24,10 @@ export function ghostEffectBlock() {
                 });
                 // убирает Loader
                 hideLoader();
-                // показывает кнопку More
-                showLoadMoreButton();
+                if (globalVariables.page <= globalVariables.fullPages) {
+                    // показывает кнопку More
+                    showLoadMoreButton();
+                }
             }
         };
 
