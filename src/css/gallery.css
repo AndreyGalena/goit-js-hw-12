@@ -10,6 +10,7 @@
 /* ------Плавная загрузка img------------------------------------------------ */
 .gallery-item {
     flex: 0 1 360px;
+    height: 260px;
     opacity: 0;
     transform: translateY(40px);
     transition: transform 1s ease, opacity 3s ease;

@@ -8,6 +8,7 @@ import {
     hideLoadMoreButton,
     clearGallery
 } from './js/render-functions';
+import './js/softScroll';
 
 
 
@@ -76,3 +77,5 @@ buttonMore.addEventListener('click', async (event) => {
     // создаём разметку
     createGallery(data.hits);
 })
+
+
